@@ -14,17 +14,28 @@ def main():
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    updatable.add(player)
+    drawable.add(player)
+
     exit = 0
     while not exit:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
 
+        dt = clock.tick(60) / 1000
         screen.fill((20, 20, 40))
-        player.draw(screen)
+
+        for item in updatable:
+            item.update(dt)
+
+        for item in drawable:
+            item.draw(screen)
 
         pygame.display.flip()
-        dt = clock.tick(60) / 1000
 
 
 if __name__ == "__main__":
