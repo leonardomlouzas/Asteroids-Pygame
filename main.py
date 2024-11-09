@@ -49,6 +49,11 @@ def main():
                 exit = 1
                 pygame.quit()
 
+            for shot in shots:
+                if item.colide(shot):
+                    item.split()
+                    shot.kill()
+
 
 if __name__ == "__main__":
     main()
